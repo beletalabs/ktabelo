@@ -6,12 +6,16 @@
 
 #include <QApplication>
 
+#include <KLocalizedString>
+
 #include "window.h"
 
 
 int main (int argc, char *argv[])
 {
     QApplication app(argc, argv);
+
+    KLocalizedString::setApplicationDomain("tabelo");
 
     Window *window = new Window();
     window->show();

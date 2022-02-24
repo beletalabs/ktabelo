@@ -41,6 +41,7 @@ find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
 
 # Find KDE modules
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+    I18n
     XmlGui
 )
 
@@ -58,6 +59,7 @@ add_executable(tabelo ${tabelo_SRCS})
 
 target_link_libraries(tabelo
     Qt5::Widgets
+    KF5::I18n
     KF5::XmlGui
 )
 
