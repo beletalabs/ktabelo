@@ -6,6 +6,7 @@
 
 #include <QApplication>
 
+#include <KAboutData>
 #include <KLocalizedString>
 
 #include "window.h"
@@ -16,6 +17,25 @@ int main (int argc, char *argv[])
     QApplication app(argc, argv);
 
     KLocalizedString::setApplicationDomain("tabelo");
+
+
+    //
+    // Infomation about this application
+
+    KAboutData aboutData(
+        QStringLiteral("tabelo"),
+        i18n("Tabelo"),
+        QStringLiteral("0.1.0"),
+        i18n("A table editor based on Qt/KF for C++"),
+        KAboutLicense::GPL_V3,
+        i18n("(c) 2022 The Tabelo authors"),
+        i18n("An open source table editor written in C++ using the Qt and KDE frameworks"),
+        QStringLiteral("https://github.com/tabeloapp/tabelo")
+    );
+    aboutData.setOrganizationDomain(QByteArray("github.com/tabeloapp"));
+
+    KAboutData::setApplicationData(aboutData);
+
 
     Window *window = new Window();
     window->show();
