@@ -4,22 +4,23 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 
-cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.16)
 
-# KDE Applications version, managed by release script.
+# Application version
 set(RELEASE_SERVICE_VERSION_MAJOR "00")
 set(RELEASE_SERVICE_VERSION_MINOR "01")
-set(RELEASE_SERVICE_VERSION_MICRO "00")
-set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
+set(RELEASE_SERVICE_VERSION_PATCH "00")
+set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_PATCH}")
 
-project(tabelo VERSION ${RELEASE_SERVICE_VERSION})
-
-set(QT_MIN_VERSION "5.15.2")
-set(KF5_DEP_VERSION "5.83.0")
+project(tabelo VERSION ${RELEASE_SERVICE_VERSION} LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+
+# Minimum versions
+set(QT5_MIN_VERSION "5.15.2")
+set(KF5_MIN_VERSION "5.83.0")
 
 find_package(ECM 1.0.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
@@ -31,34 +32,30 @@ include(FeatureSummary)
 
 add_definitions(-DQT_NO_FOREACH)
 
-
-# Find Qt modules
-find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
+# Qt modules
+find_package(Qt5 ${QT5_MIN_VERSION} CONFIG REQUIRED COMPONENTS
     Core
     Widgets
 )
 
-
-# Find KDE modules
+# KDE modules
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     CoreAddons
     I18n
     XmlGui
 )
 
-
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
-
-set(tabelo_SRCS 
+# Source files
+add_executable(tabelo
     src/main.cpp
     src/window.cpp
 )
 
-
-add_executable(tabelo ${tabelo_SRCS})
-
+# Libraries to link
 target_link_libraries(tabelo
+    Qt5::Core
     Qt5::Widgets
     KF5::CoreAddons
     KF5::I18n
