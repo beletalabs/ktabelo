@@ -34,6 +34,8 @@ int main (int argc, char *argv[])
     );
     aboutData.setOrganizationDomain(QByteArray("github.com/tabeloapp"));
 
+    aboutData.addAuthor(i18n("naracanto"), i18n("Creator"), QString(), QStringLiteral("https://naracanto.com"));
+
     KAboutData::setApplicationData(aboutData);
 
 
