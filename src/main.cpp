@@ -5,6 +5,7 @@
 */
 
 #include <QApplication>
+#include <QCommandLineParser>
 
 #include <KAboutData>
 #include <KLocalizedString>
@@ -38,6 +39,12 @@ int main (int argc, char *argv[])
 
     KAboutData::setApplicationData(aboutData);
 
+
+    // Command line
+    QCommandLineParser parser;
+    aboutData.setupCommandLine(&parser);
+    parser.process(app);
+    aboutData.processCommandLine(&parser);
 
     Window *window = new Window();
     window->show();
