@@ -10,7 +10,7 @@
 #include <KAboutData>
 #include <KLocalizedString>
 
-#include "window.h"
+#include "main_window.h"
 
 
 int main (int argc, char *argv[])
@@ -46,7 +46,7 @@ int main (int argc, char *argv[])
     parser.process(app);
     aboutData.processCommandLine(&parser);
 
-    Window *window = new Window();
+    auto *window = new MainWindow();
     window->show();
 
     return app.exec();

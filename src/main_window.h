@@ -10,10 +10,10 @@
 #include <KXmlGuiWindow>
 
 
-class Window : public KXmlGuiWindow
+class MainWindow : public KXmlGuiWindow
 {
 public:
-    explicit Window(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
 };
 
 #endif // WINDOW_H

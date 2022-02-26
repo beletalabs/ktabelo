@@ -4,10 +4,10 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#include "window.h"
+#include "main_window.h"
 
 
-Window::Window(QWidget *parent)
+MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
 {
 

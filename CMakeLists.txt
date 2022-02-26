@@ -50,7 +50,7 @@ feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAG
 # Source files
 add_executable(tabelo
     src/main.cpp
-    src/window.cpp
+    src/main_window.cpp
 )
 
 # Libraries to link
