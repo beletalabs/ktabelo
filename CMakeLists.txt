@@ -40,6 +40,7 @@ find_package(Qt5 ${QT5_MIN_VERSION} CONFIG REQUIRED COMPONENTS
 
 # KDE modules
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+    ConfigWidgets
     CoreAddons
     I18n
     XmlGui
@@ -57,6 +58,7 @@ add_executable(tabelo
 target_link_libraries(tabelo
     Qt5::Core
     Qt5::Widgets
+    KF5::ConfigWidgets
     KF5::CoreAddons
     KF5::I18n
     KF5::XmlGui

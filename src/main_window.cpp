@@ -6,6 +6,11 @@
 
 #include "main_window.h"
 
+#include <QApplication>
+
+#include <KActionCollection>
+#include <KStandardAction>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
@@ -16,5 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::setupActions()
 {
+    KStandardAction::quit(qApp, &QCoreApplication::quit, actionCollection());
+
     setupGUI(Default, QLatin1String("tabelo_ui.rc"));
 }
