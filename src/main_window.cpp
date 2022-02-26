@@ -10,5 +10,11 @@
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
 {
+    setupActions();
+}
 
+
+void MainWindow::setupActions()
+{
+    setupGUI(Default, QLatin1String("tabelo_ui.rc"));
 }

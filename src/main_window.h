@@ -14,6 +14,9 @@ class MainWindow : public KXmlGuiWindow
 {
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+
+private:
+    void setupActions();
 };
 
 #endif // WINDOW_H

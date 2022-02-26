@@ -63,3 +63,8 @@ target_link_libraries(tabelo
 )
 
 install(TARGETS tabelo ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+
+install(FILES
+    src/tabelo_ui.rc
+    DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/tabelo
+)
