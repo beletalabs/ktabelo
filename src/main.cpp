@@ -1,5 +1,5 @@
 /*
-    SPDX-FileCopyrightText: 2022 naracanto
+    SPDX-FileCopyrightText: 2022 naracanto https://naracanto.github.io
 
     SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -35,7 +35,7 @@ int main (int argc, char *argv[])
     );
     aboutData.setOrganizationDomain(QByteArray("github.com/tabeloapp"));
 
-    aboutData.addAuthor(i18n("naracanto"), i18n("Creator"), QString(), QStringLiteral("https://naracanto.com"));
+    aboutData.addAuthor(i18n("naracanto"), i18n("Creator"), QString(), QStringLiteral("https://naracanto.github.io"));
 
     KAboutData::setApplicationData(aboutData);
 
