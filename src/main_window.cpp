@@ -26,6 +26,7 @@ void MainWindow::setupActions()
     //
     // File
 
+    KStandardAction::openNew(this, &MainWindow::newDocument, actionCollection());
     KStandardAction::quit(qApp, &QCoreApplication::quit, actionCollection());
 
 
@@ -40,4 +41,10 @@ void MainWindow::setupActions()
 
     // Initialization
     actionShowMenubar->setChecked(!menuBar()->isHidden());
+}
+
+
+void MainWindow::newDocument()
+{
+
 }

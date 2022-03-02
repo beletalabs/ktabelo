@@ -12,11 +12,16 @@
 
 class MainWindow : public KXmlGuiWindow
 {
+    Q_OBJECT
+
 public:
     explicit MainWindow(QWidget *parent = nullptr);
 
 private:
     void setupActions();
+
+private Q_SLOTS:
+    void newDocument();
 };
 
 #endif // MAIN_WINDOW_H
