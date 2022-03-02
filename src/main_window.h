@@ -22,6 +22,7 @@ private:
 
 private Q_SLOTS:
     void newDocument();
+    void openDocument();
 };
 
 #endif // MAIN_WINDOW_H
