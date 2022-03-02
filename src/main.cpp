@@ -21,7 +21,7 @@ int main (int argc, char *argv[])
 
 
     //
-    // Infomation about this application
+    // About
 
     KAboutData aboutData(
         QStringLiteral("tabelo"),

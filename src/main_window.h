@@ -4,8 +4,8 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef MAIN_WINDOW_H
+#define MAIN_WINDOW_H
 
 #include <KXmlGuiWindow>
 
@@ -19,4 +19,4 @@ private:
     void setupActions();
 };
 
-#endif // WINDOW_H
+#endif // MAIN_WINDOW_H

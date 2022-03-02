@@ -23,12 +23,21 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::setupActions()
 {
+    //
+    // File
+
     KStandardAction::quit(qApp, &QCoreApplication::quit, actionCollection());
+
+
+    //
+    // Settings
 
     auto *actionShowMenubar = KStandardAction::showMenubar(menuBar(), &QMenuBar::setVisible, actionCollection());
 
+
+    // Standard window options
     setupGUI(Default, QLatin1String("tabelo_ui.rc"));
 
-    // Init actions
+    // Initialization
     actionShowMenubar->setChecked(!menuBar()->isHidden());
 }
