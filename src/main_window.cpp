@@ -8,9 +8,11 @@
 
 #include <QApplication>
 #include <QDebug>
+#include <QFileDialog>
 #include <QMenuBar>
 
 #include <KActionCollection>
+#include <KLocalizedString>
 #include <KStandardAction>
 #include <KToggleAction>
 
@@ -59,7 +61,8 @@ void MainWindow::newDocument()
 
 void MainWindow::openDocument()
 {
-
+    for (const QUrl &url : QFileDialog::getOpenFileUrls(this, i18n("Open Document")))
+        openDocumentFromFile(url);
 }
 
 
