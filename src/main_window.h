@@ -24,6 +24,7 @@ private Q_SLOTS:
     void newDocument();
     void openDocument();
     void saveDocument();
+    void saveDocumentAs();
 };
 
 #endif // MAIN_WINDOW_H

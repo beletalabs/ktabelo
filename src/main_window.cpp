@@ -29,6 +29,7 @@ void MainWindow::setupActions()
     KStandardAction::openNew(this, &MainWindow::newDocument, actionCollection());
     KStandardAction::open(this, &MainWindow::openDocument, actionCollection());
     KStandardAction::save(this, &MainWindow::saveDocument, actionCollection());
+    KStandardAction::saveAs(this, &MainWindow::saveDocumentAs, actionCollection());
     KStandardAction::quit(qApp, &QCoreApplication::quit, actionCollection());
 
 
@@ -59,6 +60,12 @@ void MainWindow::openDocument()
 
 
 void MainWindow::saveDocument()
+{
+
+}
+
+
+void MainWindow::saveDocumentAs()
 {
 
 }
