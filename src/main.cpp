@@ -6,6 +6,8 @@
 
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QDir>
+#include <QUrl>
 
 #include <KAboutData>
 #include <KLocalizedString>
@@ -40,13 +42,22 @@ int main (int argc, char *argv[])
     KAboutData::setApplicationData(aboutData);
 
 
+    //
     // Command line
+
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
+
+    parser.addPositionalArgument(QStringLiteral("urls"), i18n("Documents to open."), QStringLiteral("[urls...]"));
     parser.process(app);
+
     aboutData.processCommandLine(&parser);
 
+
     auto *window = new MainWindow();
+    for(const QString &url : parser.positionalArguments()) {
+        window->openDocumentFromFile(QUrl::fromUserInput(url, QDir::currentPath()));
+    }
     window->show();
 
     return app.exec();

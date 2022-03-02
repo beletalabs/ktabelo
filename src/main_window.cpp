@@ -7,6 +7,7 @@
 #include "main_window.h"
 
 #include <QApplication>
+#include <QDebug>
 #include <QMenuBar>
 
 #include <KActionCollection>
@@ -64,8 +65,7 @@ void MainWindow::openDocument()
 
 void MainWindow::openDocumentFromFile(const QUrl &fileName)
 {
-
-
+    qDebug() << "Document to open:" << fileName.toString();
 }
 
 
