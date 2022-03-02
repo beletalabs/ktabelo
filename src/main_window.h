@@ -9,6 +9,8 @@
 
 #include <KXmlGuiWindow>
 
+class KRecentFilesAction;
+
 
 class MainWindow : public KXmlGuiWindow
 {
@@ -17,8 +19,12 @@ class MainWindow : public KXmlGuiWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
 
+    void openDocumentFromFile(const QUrl &fileName);
+
 private:
     void setupActions();
+
+    KRecentFilesAction *m_actionRecentDocuments {nullptr};
 
 private Q_SLOTS:
     void newDocument();

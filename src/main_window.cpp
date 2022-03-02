@@ -28,6 +28,9 @@ void MainWindow::setupActions()
 
     KStandardAction::openNew(this, &MainWindow::newDocument, actionCollection());
     KStandardAction::open(this, &MainWindow::openDocument, actionCollection());
+
+    m_actionRecentDocuments = KStandardAction::openRecent(this, &MainWindow::openDocumentFromFile, actionCollection());
+
     KStandardAction::save(this, &MainWindow::saveDocument, actionCollection());
     KStandardAction::saveAs(this, &MainWindow::saveDocumentAs, actionCollection());
     KStandardAction::quit(qApp, &QCoreApplication::quit, actionCollection());
@@ -55,6 +58,13 @@ void MainWindow::newDocument()
 
 void MainWindow::openDocument()
 {
+
+}
+
+
+void MainWindow::openDocumentFromFile(const QUrl &fileName)
+{
+
 
 }
 
