@@ -23,6 +23,7 @@ private:
 private Q_SLOTS:
     void newDocument();
     void openDocument();
+    void saveDocument();
 };
 
 #endif // MAIN_WINDOW_H
