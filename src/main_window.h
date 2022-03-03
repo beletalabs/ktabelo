@@ -11,6 +11,8 @@
 
 class KRecentFilesAction;
 
+class MainWindowArea;
+
 
 class MainWindow : public KXmlGuiWindow
 {
@@ -31,6 +33,9 @@ private Q_SLOTS:
     void openDocument();
     void saveDocument();
     void saveDocumentAs();
+
+private:
+    MainWindowArea *m_windowArea;
 };
 
 #endif // MAIN_WINDOW_H
