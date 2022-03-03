@@ -54,6 +54,7 @@ add_executable(tabelo
     src/main_window.cpp
     src/mdi_area.cpp
     src/mdi_document.cpp
+    src/tabular_document.cpp
 )
 
 # Libraries to link

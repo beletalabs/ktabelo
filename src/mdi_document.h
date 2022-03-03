@@ -9,8 +9,10 @@
 
 #include <QWidget>
 
+#include "tabular_document.h"
 
-class MdiDocument : public QWidget
+
+class MdiDocument : public TabularDocument
 {
 public:
     explicit MdiDocument(QWidget *parent = nullptr);

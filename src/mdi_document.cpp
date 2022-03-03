@@ -10,7 +10,7 @@
 
 
 MdiDocument::MdiDocument(QWidget *parent)
-    : QWidget(parent)
+    : TabularDocument(parent)
 {
     static int sequenceNumber = 1;
 
