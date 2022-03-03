@@ -4,12 +4,12 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#include "main_window_document.h"
+#include "mdi_document.h"
 
 #include <KLocalizedString>
 
 
-MainWindowDocument::MainWindowDocument(QWidget *parent)
+MdiDocument::MdiDocument(QWidget *parent)
     : QWidget(parent)
 {
     static int sequenceNumber = 1;

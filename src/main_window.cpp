@@ -17,7 +17,7 @@
 #include <KToggleAction>
 
 #include "mdi_area.h"
-#include "main_window_document.h"
+#include "mdi_document.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -95,9 +95,9 @@ void MainWindow::saveDocumentAs()
 }
 
 
-MainWindowDocument *MainWindow::createDocument()
+MdiDocument *MainWindow::createDocument()
 {
-    MainWindowDocument *document = new MainWindowDocument;
+    MdiDocument *document = new MdiDocument;
     m_windowArea->addSubWindow(document);
 
     return document;

@@ -12,7 +12,7 @@
 class KRecentFilesAction;
 
 class MdiArea;
-class MainWindowDocument;
+class MdiDocument;
 
 
 class MainWindow : public KXmlGuiWindow
@@ -27,7 +27,7 @@ public:
 private:
     void setupActions();
 
-    MainWindowDocument *createDocument();
+    MdiDocument *createDocument();
 
     KRecentFilesAction *m_actionRecentDocuments {nullptr};
 
