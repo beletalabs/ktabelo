@@ -4,10 +4,10 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#include "main_window_area.h"
+#include "mdi_area.h"
 
 
-MainWindowArea::MainWindowArea(QWidget *parent)
+MdiArea::MdiArea(QWidget *parent)
     : QMdiArea(parent)
 {
 

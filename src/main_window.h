@@ -11,7 +11,7 @@
 
 class KRecentFilesAction;
 
-class MainWindowArea;
+class MdiArea;
 class MainWindowDocument;
 
 
@@ -38,7 +38,7 @@ private Q_SLOTS:
     void saveDocumentAs();
 
 private:
-    MainWindowArea *m_windowArea;
+    MdiArea *m_windowArea;
 };
 
 #endif // MAIN_WINDOW_H

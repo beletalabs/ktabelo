@@ -16,13 +16,13 @@
 #include <KStandardAction>
 #include <KToggleAction>
 
-#include "main_window_area.h"
+#include "mdi_area.h"
 #include "main_window_document.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
-    , m_windowArea{new MainWindowArea}
+    , m_windowArea{new MdiArea}
 {
     m_windowArea->setViewMode(QMdiArea::TabbedView);
     m_windowArea->setDocumentMode(true);
