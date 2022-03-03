@@ -29,8 +29,6 @@ private:
 
     MdiDocument *createDocument();
 
-    KRecentFilesAction *m_actionRecentDocuments {nullptr};
-
 private Q_SLOTS:
     void newDocument();
     void openDocument();
@@ -38,7 +36,9 @@ private Q_SLOTS:
     void saveDocumentAs();
 
 private:
-    MdiArea *m_windowArea;
+    MdiArea *m_documentsArea;
+
+    KRecentFilesAction *m_actionRecentDocuments;
 };
 
 #endif // MAIN_WINDOW_H

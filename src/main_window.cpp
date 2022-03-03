@@ -22,13 +22,14 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
-    , m_windowArea{new MdiArea}
+    , m_documentsArea{new MdiArea}
+    , m_actionRecentDocuments{nullptr}
 {
-    m_windowArea->setViewMode(QMdiArea::TabbedView);
-    m_windowArea->setDocumentMode(true);
-    m_windowArea->setTabsClosable(true);
-    m_windowArea->setTabsMovable(true);
-    setCentralWidget(m_windowArea);
+    m_documentsArea->setViewMode(QMdiArea::TabbedView);
+    m_documentsArea->setDocumentMode(true);
+    m_documentsArea->setTabsClosable(true);
+    m_documentsArea->setTabsMovable(true);
+    setCentralWidget(m_documentsArea);
 
     setupActions();
 }
@@ -98,7 +99,7 @@ void MainWindow::saveDocumentAs()
 MdiDocument *MainWindow::createDocument()
 {
     MdiDocument *document = new MdiDocument;
-    m_windowArea->addSubWindow(document);
+    m_documentsArea->addSubWindow(document);
 
     return document;
 }
