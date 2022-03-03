@@ -53,6 +53,7 @@ add_executable(tabelo
     src/main.cpp
     src/main_window.cpp
     src/main_window_area.cpp
+    src/main_window_child.cpp
 )
 
 # Libraries to link
