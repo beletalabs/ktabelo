@@ -4,10 +4,10 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#include "main_window_child.h"
+#include "main_window_document.h"
 
 
-MainWindowChild::MainWindowChild(QWidget *parent)
+MainWindowDocument::MainWindowDocument(QWidget *parent)
     : QWidget(parent)
 {
 
