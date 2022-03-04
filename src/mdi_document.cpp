@@ -12,6 +12,7 @@
 MdiDocument::MdiDocument(QWidget *parent)
     : TabularDocument(parent)
     , m_url{QUrl()}
+    , m_filenameSequenceNumber{0}
 {
     static int sequenceNumber = 1;
 
@@ -31,4 +32,19 @@ void MdiDocument::setUrl(const QUrl &url)
 QUrl MdiDocument::url() const
 {
     return m_url;
+}
+
+
+void MdiDocument::setFilenameSequenceNumber(const int number)
+{
+    if (number != m_filenameSequenceNumber) {
+        m_filenameSequenceNumber = number;
+        Q_EMIT filenameSequenceNumberChanged(number);
+    }
+}
+
+
+int MdiDocument::filenameSequenceNumber() const
+{
+    return m_filenameSequenceNumber;
 }
