@@ -13,6 +13,7 @@ MdiDocument::MdiDocument(QWidget *parent)
     : TabularDocument(parent)
     , m_url{QUrl()}
     , m_filenameSequenceNumber{0}
+    , m_pathVisibleInWindowTitle{false}
 {
     static int sequenceNumber = 1;
 
@@ -47,4 +48,16 @@ void MdiDocument::setFilenameSequenceNumber(const int number)
 int MdiDocument::filenameSequenceNumber() const
 {
     return m_filenameSequenceNumber;
+}
+
+
+void MdiDocument::setPathVisibleInWindowTitle(const bool visible)
+{
+    m_pathVisibleInWindowTitle = visible;
+}
+
+
+bool MdiDocument::isPathVisibleInWindowTitle() const
+{
+    return m_pathVisibleInWindowTitle;
 }
