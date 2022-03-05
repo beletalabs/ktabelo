@@ -66,6 +66,8 @@ void MainWindow::setupActions()
 
 void MainWindow::newDocument()
 {
+    qDebug() << "Create new document";
+
     auto *document = createDocument();
     document->show();
 }
@@ -100,6 +102,8 @@ MdiDocument *MainWindow::createDocument()
 {
     MdiDocument *document = new MdiDocument;
     m_documentsArea->addSubWindow(document);
+    m_documentsArea->updateSubWindowTitle(document);
+    connect(document, &MdiDocument::urlChanged, m_documentsArea, [=](){ m_documentsArea->updateSubWindowTitle(document); });
 
     return document;
 }

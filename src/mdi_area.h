@@ -9,11 +9,23 @@
 
 #include <QMdiArea>
 
+class QUrl;
+
+class MdiDocument;
+
 
 class MdiArea : public QMdiArea
 {
+    Q_OBJECT
+
 public:
     explicit MdiArea(QWidget *parent = nullptr);
+
+public Q_SLOTS:
+    void updateSubWindowTitle(MdiDocument *document);
+
+private:
+    int latestFilenameSequenceNumber(const QUrl &url) const;
 };
 
 #endif // MDI_AREA_H

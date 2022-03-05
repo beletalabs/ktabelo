@@ -8,7 +8,6 @@
 #define MDI_DOCUMENT_H
 
 #include <QWidget>
-
 #include <QUrl>
 
 #include "tabular_document.h"
@@ -36,6 +35,9 @@ public Q_SLOTS:
 Q_SIGNALS:
     void urlChanged(const QUrl &url);
     void filenameSequenceNumberChanged(const int number);
+
+private:
+    void updateWindowTitle();
 
 private:
     QUrl m_url;
