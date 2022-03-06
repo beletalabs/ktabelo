@@ -19,6 +19,23 @@ MdiArea::MdiArea(QWidget *parent)
 }
 
 
+QMdiSubWindow *MdiArea::findSubWindow(const QUrl &url) const
+{
+    if (url.isEmpty())
+        return nullptr;
+
+    const QList<QMdiSubWindow *> subWindows = subWindowList();
+    for (auto *subWindow : subWindows) {
+
+        auto *document = qobject_cast<MdiDocument *>(subWindow->widget());
+        if (document->url() == url)
+            return subWindow;
+    }
+
+    return nullptr;
+}
+
+
 void MdiArea::updateSubWindowTitle(MdiDocument *document)
 {
     if (!document)

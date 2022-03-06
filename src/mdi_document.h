@@ -27,6 +27,8 @@ public:
     int filenameSequenceNumber() const;
     bool isPathVisibleInWindowTitle() const;
 
+    bool load(const QUrl &url);
+
 public Q_SLOTS:
     void setUrl(const QUrl &url);
     void setFilenameSequenceNumber(const int number);

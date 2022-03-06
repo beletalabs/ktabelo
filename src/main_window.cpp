@@ -43,7 +43,7 @@ void MainWindow::setupActions()
     KStandardAction::openNew(this, &MainWindow::newDocument, actionCollection());
     KStandardAction::open(this, &MainWindow::openDocument, actionCollection());
 
-    m_actionRecentDocuments = KStandardAction::openRecent(this, &MainWindow::openDocumentFromFile, actionCollection());
+    m_actionRecentDocuments = KStandardAction::openRecent(this, &MainWindow::openDocumentFromUrl, actionCollection());
 
     KStandardAction::save(this, &MainWindow::saveDocument, actionCollection());
     KStandardAction::saveAs(this, &MainWindow::saveDocumentAs, actionCollection());
@@ -76,13 +76,48 @@ void MainWindow::newDocument()
 void MainWindow::openDocument()
 {
     for (const QUrl &url : QFileDialog::getOpenFileUrls(this, i18n("Open Document")))
-        openDocumentFromFile(url);
+        openDocumentFromUrl(url);
 }
 
 
-void MainWindow::openDocumentFromFile(const QUrl &fileName)
+bool MainWindow::openDocumentFromUrl(const QUrl &url)
 {
-    qDebug() << "Document to open:" << fileName.toString();
+    qDebug() << "Open document:" << url.toString();
+
+    if (auto *subWindow = m_documentsArea->findSubWindow(url)) {
+        // Given document is already loaded; activate the subwindow
+        m_documentsArea->setActiveSubWindow(subWindow);
+        return true;
+    }
+
+    return loadDocument(url);
+}
+
+
+bool MainWindow::loadDocument(const QUrl &url)
+{
+    auto *document = createDocument();
+
+    if (!document->load(url)) {
+        // Given document could not be loaded
+        document->close();
+        return false;
+    }
+
+    document->show();
+
+    return true;
+}
+
+
+MdiDocument *MainWindow::createDocument()
+{
+    MdiDocument *document = new MdiDocument;
+    m_documentsArea->addSubWindow(document);
+    m_documentsArea->updateSubWindowTitle(document);
+    connect(document, &MdiDocument::urlChanged, m_documentsArea, [=](){ m_documentsArea->updateSubWindowTitle(document); });
+
+    return document;
 }
 
 
@@ -95,15 +130,4 @@ void MainWindow::saveDocument()
 void MainWindow::saveDocumentAs()
 {
 
-}
-
-
-MdiDocument *MainWindow::createDocument()
-{
-    MdiDocument *document = new MdiDocument;
-    m_documentsArea->addSubWindow(document);
-    m_documentsArea->updateSubWindowTitle(document);
-    connect(document, &MdiDocument::urlChanged, m_documentsArea, [=](){ m_documentsArea->updateSubWindowTitle(document); });
-
-    return document;
 }

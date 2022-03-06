@@ -56,7 +56,7 @@ int main (int argc, char *argv[])
 
     auto *window = new MainWindow();
     for(const QString &url : parser.positionalArguments()) {
-        window->openDocumentFromFile(QUrl::fromUserInput(url, QDir::currentPath()));
+        window->openDocumentFromUrl(QUrl::fromUserInput(url, QDir::currentPath()));
     }
     window->show();
 

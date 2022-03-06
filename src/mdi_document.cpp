@@ -95,3 +95,14 @@ void MdiDocument::updateWindowTitle()
 
     setWindowTitle(title);
 }
+
+
+bool MdiDocument::load(const QUrl &url)
+{
+    if (!m_url.isEmpty())
+        return false;
+
+    setUrl(url);
+
+    return true;
+}

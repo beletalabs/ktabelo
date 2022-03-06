@@ -22,11 +22,12 @@ class MainWindow : public KXmlGuiWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
 
-    void openDocumentFromFile(const QUrl &fileName);
+    bool openDocumentFromUrl(const QUrl &url);
 
 private:
     void setupActions();
 
+    bool loadDocument(const QUrl &url);
     MdiDocument *createDocument();
 
 private Q_SLOTS:

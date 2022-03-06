@@ -9,6 +9,7 @@
 
 #include <QMdiArea>
 
+class QMdiSubWindow;
 class QUrl;
 
 class MdiDocument;
@@ -20,6 +21,8 @@ class MdiArea : public QMdiArea
 
 public:
     explicit MdiArea(QWidget *parent = nullptr);
+
+    QMdiSubWindow *findSubWindow(const QUrl &url) const;
 
 public Q_SLOTS:
     void updateSubWindowTitle(MdiDocument *document);
