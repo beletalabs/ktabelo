@@ -87,6 +87,9 @@ bool MainWindow::openDocumentFromUrl(const QUrl &url)
     if (auto *subWindow = m_documentsArea->findSubWindow(url)) {
         // Given document is already loaded; activate the subwindow
         m_documentsArea->setActiveSubWindow(subWindow);
+
+        m_actionRecentDocuments->addUrl(url);
+
         return true;
     }
 
@@ -105,6 +108,8 @@ bool MainWindow::loadDocument(const QUrl &url)
     }
 
     document->show();
+
+    m_actionRecentDocuments->addUrl(url);
 
     return true;
 }
