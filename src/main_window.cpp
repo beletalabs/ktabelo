@@ -41,9 +41,9 @@ void MainWindow::setupActions()
     // File
 
     KStandardAction::openNew(this, &MainWindow::newDocument, actionCollection());
-    KStandardAction::open(this, &MainWindow::openDocument, actionCollection());
+    KStandardAction::open(this, &MainWindow::openDocuments, actionCollection());
 
-    m_actionRecentDocuments = KStandardAction::openRecent(this, &MainWindow::openDocumentFromUrl, actionCollection());
+    m_actionRecentDocuments = KStandardAction::openRecent(this, &MainWindow::openDocument, actionCollection());
 
     KStandardAction::save(this, &MainWindow::saveDocument, actionCollection());
     KStandardAction::saveAs(this, &MainWindow::saveDocumentAs, actionCollection());
@@ -64,6 +64,17 @@ void MainWindow::setupActions()
 }
 
 
+MdiDocument *MainWindow::createDocument()
+{
+    MdiDocument *document = new MdiDocument;
+    m_documentsArea->addSubWindow(document);
+    m_documentsArea->updateSubWindowTitle(document);
+    connect(document, &MdiDocument::urlChanged, m_documentsArea, [=](){ m_documentsArea->updateSubWindowTitle(document); });
+
+    return document;
+}
+
+
 void MainWindow::newDocument()
 {
     qDebug() << "Create new document";
@@ -73,14 +84,14 @@ void MainWindow::newDocument()
 }
 
 
-void MainWindow::openDocument()
+void MainWindow::openDocuments()
 {
     for (const QUrl &url : QFileDialog::getOpenFileUrls(this, i18n("Open Document")))
-        openDocumentFromUrl(url);
+        openDocument(url);
 }
 
 
-bool MainWindow::openDocumentFromUrl(const QUrl &url)
+bool MainWindow::openDocument(const QUrl &url)
 {
     qDebug() << "Open document:" << url.toString();
 
@@ -112,17 +123,6 @@ bool MainWindow::loadDocument(const QUrl &url)
     m_actionRecentDocuments->addUrl(url);
 
     return true;
-}
-
-
-MdiDocument *MainWindow::createDocument()
-{
-    MdiDocument *document = new MdiDocument;
-    m_documentsArea->addSubWindow(document);
-    m_documentsArea->updateSubWindowTitle(document);
-    connect(document, &MdiDocument::urlChanged, m_documentsArea, [=](){ m_documentsArea->updateSubWindowTitle(document); });
-
-    return document;
 }
 
 
