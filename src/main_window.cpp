@@ -48,6 +48,7 @@ void MainWindow::setupActions()
 
     KStandardAction::save(this, &MainWindow::saveDocument, actionCollection());
     KStandardAction::saveAs(this, &MainWindow::saveDocumentAs, actionCollection());
+    KStandardAction::close(m_documentsArea, &MdiArea::closeActiveSubWindow, actionCollection());
     KStandardAction::quit(qApp, &QCoreApplication::quit, actionCollection());
 
 
