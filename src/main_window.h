@@ -38,6 +38,7 @@ private Q_SLOTS:
     void saveDocument();
     void saveDocumentAs();
     void closeOtherDocuments();
+    void closeAllDocuments();
 
     void viewFullScreen(bool fullScreen);
 

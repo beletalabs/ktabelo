@@ -57,6 +57,11 @@ void MainWindow::setupActions()
     actionCollection()->addAction(QStringLiteral("file_close_other"), actionCloseOther);
     connect(actionCloseOther, &QAction::triggered, this, &MainWindow::closeOtherDocuments);
 
+    auto *actionCloseAll = new QAction(i18n("Close All"), this);
+    actionCloseAll->setToolTip(i18n("Close all open documents"));
+    actionCollection()->addAction(QStringLiteral("file_close_all"), actionCloseAll);
+    connect(actionCloseAll, &QAction::triggered, this, &MainWindow::closeAllDocuments);
+
     KStandardAction::quit(qApp, &QCoreApplication::quit, actionCollection());
 
 
@@ -167,6 +172,22 @@ void MainWindow::closeOtherDocuments()
             != KMessageBox::Cancel) {
 
         m_documentsArea->closeOtherSubWindows();
+    }
+}
+
+
+void MainWindow::closeAllDocuments()
+{
+    if (!m_documentsArea->subWindowList().empty()
+        && KMessageBox::warningContinueCancel(this,
+                                              i18n("This will close all open documents. Are you sure you want to continue?"),
+                                              i18n("Close all documents"),
+                                              KStandardGuiItem::cont(),
+                                              KStandardGuiItem::cancel(),
+                                              QStringLiteral("closeAll"))
+            != KMessageBox::Cancel) {
+
+        m_documentsArea->closeAllSubWindows();
     }
 }
 
