@@ -15,6 +15,7 @@
 #include <KLocalizedString>
 #include <KStandardAction>
 #include <KToggleAction>
+#include <KToggleFullScreenAction>
 
 #include "mdi_area.h"
 #include "mdi_document.h"
@@ -48,6 +49,13 @@ void MainWindow::setupActions()
     KStandardAction::save(this, &MainWindow::saveDocument, actionCollection());
     KStandardAction::saveAs(this, &MainWindow::saveDocumentAs, actionCollection());
     KStandardAction::quit(qApp, &QCoreApplication::quit, actionCollection());
+
+
+    //
+    // View
+
+    auto *actionViewFullScreen = KStandardAction::fullScreen(this, &MainWindow::viewFullScreen, this, actionCollection());
+    actionCollection()->setDefaultShortcut(actionViewFullScreen, Qt::Key_F11);
 
 
     //
@@ -135,4 +143,10 @@ void MainWindow::saveDocument()
 void MainWindow::saveDocumentAs()
 {
 
+}
+
+
+void MainWindow::viewFullScreen(bool fullScreen)
+{
+    KToggleFullScreenAction::setFullScreen(this, fullScreen);
 }

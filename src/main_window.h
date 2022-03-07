@@ -36,6 +36,8 @@ private Q_SLOTS:
     void saveDocument();
     void saveDocumentAs();
 
+    void viewFullScreen(bool fullScreen);
+
 private:
     MdiArea *m_documentsArea;
 
