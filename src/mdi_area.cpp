@@ -36,6 +36,25 @@ QMdiSubWindow *MdiArea::findSubWindow(const QUrl &url) const
 }
 
 
+void MdiArea::closeOtherSubWindows(QMdiSubWindow *givenSubWindow)
+{
+    QList<QMdiSubWindow *> subWindows = subWindowList();
+
+    if (subWindows.isEmpty())
+        return;
+
+    // Remove the subwindow from the list that should not be closed
+    if (givenSubWindow)
+        subWindows.removeAll(givenSubWindow);
+    else
+        subWindows.removeAll(activeSubWindow());
+
+    // Close all other subwindows
+    for (auto *subWindow : subWindows)
+        subWindow->close();
+}
+
+
 void MdiArea::updateSubWindowTitle(MdiDocument *document)
 {
     if (!document)

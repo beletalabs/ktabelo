@@ -10,9 +10,11 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QMenuBar>
+#include <QMdiSubWindow>
 
 #include <KActionCollection>
 #include <KLocalizedString>
+#include <KMessageBox>
 #include <KStandardAction>
 #include <KToggleAction>
 #include <KToggleFullScreenAction>
@@ -49,6 +51,12 @@ void MainWindow::setupActions()
     KStandardAction::save(this, &MainWindow::saveDocument, actionCollection());
     KStandardAction::saveAs(this, &MainWindow::saveDocumentAs, actionCollection());
     KStandardAction::close(m_documentsArea, &MdiArea::closeActiveSubWindow, actionCollection());
+
+    auto *actionCloseOther = new QAction(i18n("Close Other"), this);
+    actionCloseOther->setToolTip(i18n("Close other open documents"));
+    actionCollection()->addAction(QStringLiteral("file_close_other"), actionCloseOther);
+    connect(actionCloseOther, &QAction::triggered, this, &MainWindow::closeOtherDocuments);
+
     KStandardAction::quit(qApp, &QCoreApplication::quit, actionCollection());
 
 
@@ -144,6 +152,22 @@ void MainWindow::saveDocument()
 void MainWindow::saveDocumentAs()
 {
 
+}
+
+
+void MainWindow::closeOtherDocuments()
+{
+    if (m_documentsArea->subWindowList().size() > 1
+        && KMessageBox::warningContinueCancel(this,
+                                              i18n("This will close all open documents beside the current one. Are you sure you want to continue?"),
+                                              i18n("Close all documents beside current one"),
+                                              KStandardGuiItem::cont(),
+                                              KStandardGuiItem::cancel(),
+                                              QStringLiteral("closeOther"))
+            != KMessageBox::Cancel) {
+
+        m_documentsArea->closeOtherSubWindows();
+    }
 }
 
 

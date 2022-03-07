@@ -43,6 +43,7 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     ConfigWidgets
     CoreAddons
     I18n
+    WidgetsAddons
     XmlGui
 )
 
@@ -64,6 +65,7 @@ target_link_libraries(tabelo
     KF5::ConfigWidgets
     KF5::CoreAddons
     KF5::I18n
+    KF5::WidgetsAddons
     KF5::XmlGui
 )
 

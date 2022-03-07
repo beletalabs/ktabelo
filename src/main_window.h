@@ -9,6 +9,8 @@
 
 #include <KXmlGuiWindow>
 
+class QMdiSubWindow;
+
 class KRecentFilesAction;
 
 class MdiArea;
@@ -35,6 +37,7 @@ private Q_SLOTS:
     void openDocuments();
     void saveDocument();
     void saveDocumentAs();
+    void closeOtherDocuments();
 
     void viewFullScreen(bool fullScreen);
 

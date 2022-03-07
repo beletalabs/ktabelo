@@ -24,6 +24,8 @@ public:
 
     QMdiSubWindow *findSubWindow(const QUrl &url) const;
 
+    void closeOtherSubWindows(QMdiSubWindow *givenSubWindow = nullptr);
+
 public Q_SLOTS:
     void updateSubWindowTitle(MdiDocument *document);
 

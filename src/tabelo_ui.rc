@@ -4,13 +4,29 @@
 
     SPDX-License-Identifier: GPL-3.0-or-later
 -->
-<gui name="tabelo" version="4"
+<gui name="tabelo" version="5"
      xmlns="http://www.kde.org/standards/kxmlgui/1.0"
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0 http://www.kde.org/standards/kxmlgui/1.0/kxmlgui.xsd">
     <MenuBar>
         <Menu name="file">
             <text>&amp;File</text>
+            <Action name="file_new"/>
+            <DefineGroup name="new_merge"/>
+            <Separator/>
+            <Action name="file_open"/>
+            <Action name="file_open_recent"/>
+            <DefineGroup name="open_merge"/>
+            <Separator/>
+            <Action name="file_save"/>
+            <Action name="file_save_as"/>
+            <DefineGroup name="save_merge"/>
+            <Separator/>
+            <Action name="file_close"/>
+            <Action name="file_close_other"/>
+            <DefineGroup name="close_merge"/>
+            <Separator/>
+            <Action name="file_quit"/>
         </Menu>
         <Menu name="settings">
             <text>&amp;Settings</text>
@@ -18,5 +34,9 @@
     </MenuBar>
     <ToolBar name="mainToolBar">
         <text>Main Toolbar</text>
+        <Action name="file_new"/>
+        <Action name="file_open"/>
+        <Separator/>
+        <Action name="file_save"/>
     </ToolBar>
 </gui>
