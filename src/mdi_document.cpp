@@ -16,6 +16,7 @@ MdiDocument::MdiDocument(QWidget *parent)
     , m_url{QUrl()}
     , m_filenameSequenceNumber{0}
     , m_pathVisibleInWindowTitle{false}
+    , m_modified{false}
 {
 
 }
@@ -76,6 +77,21 @@ void MdiDocument::setPathVisibleInWindowTitle(const bool visible)
 bool MdiDocument::isPathVisibleInWindowTitle() const
 {
     return m_pathVisibleInWindowTitle;
+}
+
+
+void MdiDocument::setModified(const bool modified)
+{
+    if (modified != m_modified) {
+        m_modified = modified;
+        Q_EMIT modifiedChanged(modified);
+    }
+}
+
+
+bool MdiDocument::isModified() const
+{
+    return m_modified;
 }
 
 
