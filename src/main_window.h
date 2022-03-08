@@ -28,11 +28,14 @@ public:
 
 private:
     void setupActions();
+    void updateWindowTitle();
 
     MdiDocument *createDocument();
     bool loadDocument(const QUrl &url);
 
 private Q_SLOTS:
+    void documentActivated(QMdiSubWindow *subWindow);
+
     void newDocument();
     void openDocuments();
     void saveDocument();

@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_documentsArea->setTabsClosable(true);
     m_documentsArea->setTabsMovable(true);
     setCentralWidget(m_documentsArea);
+    connect(m_documentsArea, &QMdiArea::subWindowActivated, this, &MainWindow::documentActivated);
 
     setupActions();
 }
@@ -83,6 +84,24 @@ void MainWindow::setupActions()
 
     // Initialization
     actionShowMenubar->setChecked(!menuBar()->isHidden());
+}
+
+
+void MainWindow::documentActivated(QMdiSubWindow *subWindow)
+{
+    // Window title
+    updateWindowTitle();
+}
+
+
+void MainWindow::updateWindowTitle()
+{
+    QString title;
+
+    if (auto *subWindow = m_documentsArea->activeSubWindow())
+        title = subWindow->windowTitle();
+
+    setWindowTitle(title);
 }
 
 
