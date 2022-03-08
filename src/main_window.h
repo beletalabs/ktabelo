@@ -12,6 +12,7 @@
 class QMdiSubWindow;
 
 class KRecentFilesAction;
+class KToggleAction;
 
 class MdiArea;
 class MdiDocument;
@@ -28,13 +29,14 @@ public:
 
 private:
     void setupActions();
-    void updateWindowTitle();
 
     MdiDocument *createDocument();
+    MdiDocument *activeDocument() const;
     bool loadDocument(const QUrl &url);
 
 private Q_SLOTS:
     void documentActivated(QMdiSubWindow *subWindow);
+    void updateWindowTitle();
 
     void newDocument();
     void openDocuments();
@@ -49,6 +51,8 @@ private:
     MdiArea *m_documentsArea;
 
     KRecentFilesAction *m_actionRecentDocuments;
+
+    KToggleAction *m_actionShowPath;
 };
 
 #endif // MAIN_WINDOW_H

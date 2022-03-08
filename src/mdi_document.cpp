@@ -90,7 +90,7 @@ void MdiDocument::updateWindowTitle()
     else
         title = i18n("Untitled");
 
-    if (!m_pathVisibleInWindowTitle && m_filenameSequenceNumber > 1)
+    if (m_filenameSequenceNumber > 1 && (!m_pathVisibleInWindowTitle || m_url.isEmpty()))
         title = i18n("%1 (%2)", title, m_filenameSequenceNumber);
 
     setWindowTitle(title);

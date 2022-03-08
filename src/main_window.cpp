@@ -76,6 +76,11 @@ void MainWindow::setupActions()
     //
     // Settings
 
+    m_actionShowPath = new KToggleAction(i18n("Show Path in Titlebar"), this);
+    m_actionShowPath->setToolTip(i18n("Show the complete document path in the window caption"));
+    actionCollection()->addAction(QStringLiteral("options_show_path"), m_actionShowPath);
+    connect(m_actionShowPath, &KToggleAction::toggled, this, &MainWindow::updateWindowTitle);
+
     auto *actionShowMenubar = KStandardAction::showMenubar(menuBar(), &QMenuBar::setVisible, actionCollection());
 
 
@@ -83,6 +88,7 @@ void MainWindow::setupActions()
     setupGUI(Default, QLatin1String("tabelo_ui.rc"));
 
     // Initialization
+    m_actionShowPath->setChecked(true);
     actionShowMenubar->setChecked(!menuBar()->isHidden());
 }
 
@@ -97,11 +103,37 @@ void MainWindow::documentActivated(QMdiSubWindow *subWindow)
 void MainWindow::updateWindowTitle()
 {
     QString title;
+    bool modified{false};
 
-    if (auto *subWindow = m_documentsArea->activeSubWindow())
-        title = subWindow->windowTitle();
+    if (auto *document = activeDocument()) {
 
-    setWindowTitle(title);
+        // Name
+        if (!document->url().isEmpty()) {
+
+            if (m_actionShowPath->isChecked()) {
+
+                title = document->url().toString(QUrl::PreferLocalFile);
+
+                const QString homePath = QDir::homePath();
+                if (title.startsWith(homePath))
+                    title.replace(0, homePath.length(), QLatin1Char('~'));
+            }
+            else {
+                title = document->url().fileName();
+            }
+        }
+        else {
+            title = i18n("Untitled");
+        }
+
+        // Sequence number
+        if (document->filenameSequenceNumber() > 1 && (!m_actionShowPath->isChecked() || document->url().isEmpty()))
+            title = i18n("%1 (%2)", title, document->filenameSequenceNumber());
+
+        modified = document->isWindowModified();
+    }
+
+    setCaption(title, modified);
 }
 
 
@@ -113,6 +145,15 @@ MdiDocument *MainWindow::createDocument()
     connect(document, &MdiDocument::urlChanged, m_documentsArea, [=](){ m_documentsArea->updateSubWindowTitle(document); });
 
     return document;
+}
+
+
+MdiDocument *MainWindow::activeDocument() const
+{
+    if (auto *subWindow = m_documentsArea->activeSubWindow())
+        return qobject_cast<MdiDocument *>(subWindow->widget());
+
+    return nullptr;
 }
 
 
