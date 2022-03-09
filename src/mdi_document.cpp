@@ -7,6 +7,7 @@
 #include "mdi_document.h"
 
 #include <QDebug>
+#include <QDir>
 
 #include <KLocalizedString>
 
@@ -97,15 +98,28 @@ bool MdiDocument::isModified() const
 
 void MdiDocument::updateWindowTitle()
 {
-    qInfo() << "  Update document window title:" << m_url.toDisplayString() << m_filenameSequenceNumber << m_pathVisibleInWindowTitle;
-
     QString title;
 
-    if (!m_url.isEmpty())
-        title = m_pathVisibleInWindowTitle ? m_url.toDisplayString() : m_url.fileName();
-    else
-        title = i18n("Untitled");
+    // Name
+    if (!m_url.isEmpty()) {
 
+        if (m_pathVisibleInWindowTitle) {
+
+            title = m_url.toString(QUrl::PreferLocalFile);
+
+            const QString homePath = QDir::homePath();
+            if (title.startsWith(homePath))
+                title.replace(0, homePath.length(), QLatin1Char('~'));
+        }
+        else {
+            title = m_url.fileName();
+        }
+    }
+    else {
+        title = i18n("Untitled");
+    }
+
+    // Sequence number
     if (m_filenameSequenceNumber > 1 && (!m_pathVisibleInWindowTitle || m_url.isEmpty()))
         title = i18n("%1 (%2)", title, m_filenameSequenceNumber);
 
