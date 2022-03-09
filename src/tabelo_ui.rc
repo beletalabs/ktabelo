@@ -4,7 +4,7 @@
 
     SPDX-License-Identifier: GPL-3.0-or-later
 -->
-<gui name="tabelo" version="7"
+<gui name="tabelo" version="8"
      xmlns="http://www.kde.org/standards/kxmlgui/1.0"
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0 http://www.kde.org/standards/kxmlgui/1.0/kxmlgui.xsd">
@@ -20,6 +20,7 @@
             <Separator/>
             <Action name="file_save"/>
             <Action name="file_save_as"/>
+            <Action name="file_save_all"/>
             <DefineGroup name="save_merge"/>
             <Separator/>
             <Action name="file_close"/>

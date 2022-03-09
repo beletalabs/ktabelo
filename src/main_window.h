@@ -43,6 +43,7 @@ private Q_SLOTS:
     void openDocuments();
     void saveDocument();
     void saveDocumentAs();
+    void saveAllDocuments();
     void closeOtherDocuments();
     void closeAllDocuments();
 
@@ -54,6 +55,7 @@ private:
     KRecentFilesAction *m_actionRecentDocuments;
     QAction *m_actionSave;
     QAction *m_actionSaveAs;
+    QAction *m_actionSaveAll;
     QAction *m_actionClose;
     QAction *m_actionCloseOther;
     QAction *m_actionCloseAll;

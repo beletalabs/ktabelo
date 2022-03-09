@@ -51,6 +51,14 @@ void MainWindow::setupActions()
     m_actionRecentDocuments = KStandardAction::openRecent(this, &MainWindow::openDocument, actionCollection());
     m_actionSave = KStandardAction::save(this, &MainWindow::saveDocument, actionCollection());
     m_actionSaveAs = KStandardAction::saveAs(this, &MainWindow::saveDocumentAs, actionCollection());
+
+    m_actionSaveAll = new QAction(i18n("Save All"), this);
+    m_actionSaveAll->setIcon(QIcon::fromTheme(QStringLiteral("document-save-all")));
+    m_actionSaveAll->setToolTip(i18n("Save all open, modified documents"));
+    actionCollection()->addAction(QStringLiteral("file_save_all"), m_actionSaveAll);
+    actionCollection()->setDefaultShortcut(m_actionSaveAll, QKeySequence(Qt::CTRL | Qt::Key_L));
+    connect(m_actionSaveAll, &QAction::triggered, this, &MainWindow::saveAllDocuments);
+
     m_actionClose = KStandardAction::close(m_documentsArea, &MdiArea::closeActiveSubWindow, actionCollection());
 
     m_actionCloseOther = new QAction(i18n("Close Other"), this);
@@ -104,6 +112,7 @@ void MainWindow::documentActivated(QMdiSubWindow *subWindow)
     // Actions
     m_actionSave->setEnabled(documentCount >= 1);
     m_actionSaveAs->setEnabled(documentCount >= 1);
+    m_actionSaveAll->setEnabled(documentCount >= 1);
     m_actionClose->setEnabled(documentCount >= 1);
     m_actionCloseOther->setEnabled(documentCount >= 2);
     m_actionCloseAll->setEnabled(documentCount >= 1);
@@ -225,6 +234,12 @@ void MainWindow::saveDocument()
 
 
 void MainWindow::saveDocumentAs()
+{
+
+}
+
+
+void MainWindow::saveAllDocuments()
 {
 
 }
