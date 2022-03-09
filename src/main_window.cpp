@@ -36,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_documentsArea, &QMdiArea::subWindowActivated, this, &MainWindow::documentActivated);
 
     setupActions();
+
+    documentActivated(nullptr);
 }
 
 
@@ -46,22 +48,20 @@ void MainWindow::setupActions()
 
     KStandardAction::openNew(this, &MainWindow::newDocument, actionCollection());
     KStandardAction::open(this, &MainWindow::openDocuments, actionCollection());
-
     m_actionRecentDocuments = KStandardAction::openRecent(this, &MainWindow::openDocument, actionCollection());
+    m_actionSave = KStandardAction::save(this, &MainWindow::saveDocument, actionCollection());
+    m_actionSaveAs = KStandardAction::saveAs(this, &MainWindow::saveDocumentAs, actionCollection());
+    m_actionClose = KStandardAction::close(m_documentsArea, &MdiArea::closeActiveSubWindow, actionCollection());
 
-    KStandardAction::save(this, &MainWindow::saveDocument, actionCollection());
-    KStandardAction::saveAs(this, &MainWindow::saveDocumentAs, actionCollection());
-    KStandardAction::close(m_documentsArea, &MdiArea::closeActiveSubWindow, actionCollection());
+    m_actionCloseOther = new QAction(i18n("Close Other"), this);
+    m_actionCloseOther->setToolTip(i18n("Close other open documents"));
+    actionCollection()->addAction(QStringLiteral("file_close_other"), m_actionCloseOther);
+    connect(m_actionCloseOther, &QAction::triggered, this, &MainWindow::closeOtherDocuments);
 
-    auto *actionCloseOther = new QAction(i18n("Close Other"), this);
-    actionCloseOther->setToolTip(i18n("Close other open documents"));
-    actionCollection()->addAction(QStringLiteral("file_close_other"), actionCloseOther);
-    connect(actionCloseOther, &QAction::triggered, this, &MainWindow::closeOtherDocuments);
-
-    auto *actionCloseAll = new QAction(i18n("Close All"), this);
-    actionCloseAll->setToolTip(i18n("Close all open documents"));
-    actionCollection()->addAction(QStringLiteral("file_close_all"), actionCloseAll);
-    connect(actionCloseAll, &QAction::triggered, this, &MainWindow::closeAllDocuments);
+    m_actionCloseAll = new QAction(i18n("Close All"), this);
+    m_actionCloseAll->setToolTip(i18n("Close all open documents"));
+    actionCollection()->addAction(QStringLiteral("file_close_all"), m_actionCloseAll);
+    connect(m_actionCloseAll, &QAction::triggered, this, &MainWindow::closeAllDocuments);
 
     KStandardAction::quit(qApp, &QCoreApplication::quit, actionCollection());
 
@@ -97,6 +97,16 @@ void MainWindow::documentActivated(QMdiSubWindow *subWindow)
 {
     // Window title
     updateWindowTitle();
+
+    const int documentCount = m_documentsArea->subWindowList().size();
+    const auto *document = activeDocument();
+
+    // Actions
+    m_actionSave->setEnabled(documentCount >= 1);
+    m_actionSaveAs->setEnabled(documentCount >= 1);
+    m_actionClose->setEnabled(documentCount >= 1);
+    m_actionCloseOther->setEnabled(documentCount >= 2);
+    m_actionCloseAll->setEnabled(documentCount >= 1);
 }
 
 

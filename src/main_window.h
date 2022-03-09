@@ -9,6 +9,7 @@
 
 #include <KXmlGuiWindow>
 
+class QAction;
 class QMdiSubWindow;
 
 class KRecentFilesAction;
@@ -51,6 +52,11 @@ private:
     MdiArea *m_documentsArea;
 
     KRecentFilesAction *m_actionRecentDocuments;
+    QAction *m_actionSave;
+    QAction *m_actionSaveAs;
+    QAction *m_actionClose;
+    QAction *m_actionCloseOther;
+    QAction *m_actionCloseAll;
 
     KToggleAction *m_actionShowPath;
 };
