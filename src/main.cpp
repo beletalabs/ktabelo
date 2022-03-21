@@ -33,9 +33,9 @@ int main (int argc, char *argv[])
         KAboutLicense::GPL_V3,
         i18n("(c) 2022 The Tabelo authors"),
         i18n("An open source table editor written in C++ using the Qt and KDE frameworks"),
-        QStringLiteral("https://github.com/tabelolabs/tabelo")
+        QStringLiteral("https://github.com/cutelabs/tabelo")
     );
-    aboutData.setOrganizationDomain(QByteArray("tabelolabs.github.io"));
+    aboutData.setOrganizationDomain(QByteArray("cutelabs.github.io"));
 
     aboutData.addAuthor(i18n("naracanto"), i18n("Creator"), QString(), QStringLiteral("https://naracanto.github.io"));
 
