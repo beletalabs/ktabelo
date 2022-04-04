@@ -1,12 +1,12 @@
 
-# Tabelo
+# KTabelo
 
 A table editor based on Qt/KF for C++.
 
 
 ## Description
 
-Tabelo is an open source table editor written in C++ using the Qt and KDE frameworks.
+KTabelo is an open source table editor written in C++ using the Qt and KDE frameworks.
 
 
 ## Copyright

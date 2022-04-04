@@ -19,21 +19,21 @@ int main (int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    KLocalizedString::setApplicationDomain("tabelo");
+    KLocalizedString::setApplicationDomain("ktabelo");
 
 
     //
     // About
 
     KAboutData aboutData(
-        QStringLiteral("tabelo"),
-        i18n("Tabelo"),
+        QStringLiteral("ktabelo"),
+        i18n("KTabelo"),
         QStringLiteral("0.1.0"),
         i18n("A table editor based on Qt/KF for C++"),
         KAboutLicense::GPL_V3,
-        i18n("(c) 2022 The Tabelo authors"),
+        i18n("(c) 2022 The KTabelo authors"),
         i18n("An open source table editor written in C++ using the Qt and KDE frameworks"),
-        QStringLiteral("https://github.com/cutelabs/tabelo")
+        QStringLiteral("https://github.com/cutelabs/ktabelo")
     );
     aboutData.setOrganizationDomain(QByteArray("cutelabs.github.io"));
 

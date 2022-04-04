@@ -12,7 +12,7 @@ set(RELEASE_SERVICE_VERSION_MINOR "01")
 set(RELEASE_SERVICE_VERSION_PATCH "00")
 set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_PATCH}")
 
-project(tabelo VERSION ${RELEASE_SERVICE_VERSION} LANGUAGES CXX)
+project(ktabelo VERSION ${RELEASE_SERVICE_VERSION} LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -50,7 +50,7 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 # Source files
-add_executable(tabelo
+add_executable(ktabelo
     src/main.cpp
     src/main_window.cpp
     src/mdi_area.cpp
@@ -59,7 +59,7 @@ add_executable(tabelo
 )
 
 # Libraries to link
-target_link_libraries(tabelo
+target_link_libraries(ktabelo
     Qt5::Core
     Qt5::Widgets
     KF5::ConfigWidgets
@@ -69,9 +69,9 @@ target_link_libraries(tabelo
     KF5::XmlGui
 )
 
-install(TARGETS tabelo ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS ktabelo ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
-    src/tabelo_ui.rc
-    DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/tabelo
+    src/ktabelo_ui.rc
+    DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/ktabelo
 )

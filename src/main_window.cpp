@@ -93,7 +93,7 @@ void MainWindow::setupActions()
 
 
     // Standard window options
-    setupGUI(Default, QLatin1String("tabelo_ui.rc"));
+    setupGUI(Default, QLatin1String("ktabelo_ui.rc"));
 
     // Initialization
     m_actionShowPath->setChecked(true);
